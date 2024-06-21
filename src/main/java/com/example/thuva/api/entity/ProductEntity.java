@@ -44,10 +44,10 @@ public class ProductEntity {
             joinColumns = @JoinColumn(name = "PRODUCT_ID"),
             inverseJoinColumns = @JoinColumn(name = "TAG_ID")
     )
-    private List<?> tags = new ArrayList<>();
+    private List<TagEntity> tags = new ArrayList<>();
 
     @OneToMany(mappedBy = "product")
-    private List<?> items;
+    private List<ItemEntity> items;
 
     public ProductEntity(UUID id,
                          @NotNull(message = "Product name is required") String name,

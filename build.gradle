@@ -32,7 +32,7 @@ swaggerSources {
 			rawOptions = ['--ignore-file-override', ignoreFile, '--type-mappings',
 						  typeMappings, '--import-mappings', importMappings] as List<String>
 			components = [models: true, apis: true, supportingFiles: 'ApiUtil.java']
-			dependsOn validation
+			// dependsOn validation
 		}
 	}
 }

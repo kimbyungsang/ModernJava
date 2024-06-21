@@ -21,16 +21,8 @@ public class CartController implements CartApi {
     private static final Logger log = LoggerFactory.getLogger(CartController.class);
 
     @Override
-    public Optional<NativeWebRequest> getRequest() {
-        return CartApi.super.getRequest();
-    }
-
-    @Override
-    public ResponseEntity<List<Item>> addCartItemsByCustomerId(String customerId, @Valid Item item) throws Exception {
-        log.info("Request for customer ID: {}\nItem: {}",customerId, item);
-        return ok(Collections.EMPTY_LIST);
-
-//    return CartApi.super.addCartItemsByCustomerId(customerId, item);
+    public ResponseEntity<List<Item>> addCartItemsByCustomerId(String customerId, Item item) throws Exception {
+        return CartApi.super.addCartItemsByCustomerId(customerId, item);
     }
 
     @Override
@@ -49,18 +41,17 @@ public class CartController implements CartApi {
     }
 
     @Override
-    public ResponseEntity<List<Cart>> getCartByCustomerId(String customerId) {
-        // return CartApi.super.getCartByCustomerId(customerId);
-        throw new RuntimeException("Manual Exception thrown");
+    public ResponseEntity<Cart> getCartByCustomerId(String customerId) throws Exception {
+        return CartApi.super.getCartByCustomerId(customerId);
     }
 
     @Override
-    public ResponseEntity<List<Item>> getCartItemsByCustomerId(String customerId) {
-        return null;
+    public ResponseEntity<List<Item>> getCartItemsByCustomerId(String customerId) throws Exception {
+        return CartApi.super.getCartItemsByCustomerId(customerId);
     }
 
     @Override
-    public ResponseEntity<List<Item>> getCartItemsByItemId(String customerId, String itemId) throws Exception {
+    public ResponseEntity<Item> getCartItemsByItemId(String customerId, String itemId) throws Exception {
         return CartApi.super.getCartItemsByItemId(customerId, itemId);
     }
 }

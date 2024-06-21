@@ -15,7 +15,7 @@ public class CartEntity {
     @Id
     @GeneratedValue
     @Column(name = "ID", updatable = false, nullable = false)
-    private UUID uid;
+    private UUID id;
 
     @OneToOne
     @JoinColumn(name="USER_ID", referencedColumnName = "ID")

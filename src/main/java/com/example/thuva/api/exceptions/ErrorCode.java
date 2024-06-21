@@ -10,7 +10,9 @@ public enum ErrorCode {
     HTTP_MESSAGE_NOT_WRITABLE("CODE-0003", "Missing 'Accept' header"),
     HTTP_MEDIA_TYPE_NOT_ACCEPTABLE("CODE-0004", "Requested 'Accept' header value is not supported"),
     JSON_PARSE_ERROR("CODE-0005", "Make sure request payload should be a valid JSON object"),
-    HTTP_MESSAGE_NOT_READABLE("CODE-0006", "Make sure request payload should be a valid JSON or XML object.");
+    HTTP_MESSAGE_NOT_READABLE("CODE-0006", "Make sure request payload should be a valid JSON or XML object."),
+    RESOURCE_NOT_FOUND("CODE-0010", "Requested resource not found");
+
 
     @Getter
     private String errCode;

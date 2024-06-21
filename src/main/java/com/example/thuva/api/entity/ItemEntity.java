@@ -20,9 +20,6 @@ public class ItemEntity {
     @Column(name = "ID", updatable = false, nullable = false)
     private UUID id;
 
-    @ManyToOne
-    @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")
-    private ProductEntity product;
 
     @Column(name = "PRICE")
     private BigDecimal price;
@@ -30,10 +27,14 @@ public class ItemEntity {
     @Column(name = "QUANTITY")
     private int quantity;
 
+    @ManyToOne
+    @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")
+    private ProductEntity product;
+
     @ManyToMany(mappedBy = "items", fetch = FetchType.LAZY)
     private List<CartEntity> cart;
 
     @ManyToMany(mappedBy = "items", fetch = FetchType.LAZY)
-    private List<?> orders;
+    private List<OrderEntity> orders;
 
 }
