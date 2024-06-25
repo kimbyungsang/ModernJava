@@ -9,7 +9,6 @@ import java.util.*;
 @Entity
 @Table(name = "cart")
 @Getter
-@Setter
 public class CartEntity {
 
     @Id
@@ -44,5 +43,20 @@ public class CartEntity {
     @Override
     public int hashCode() {
         return Objects.hash(user, items);
+    }
+
+    public CartEntity setId(UUID id) {
+        this.id = id;
+        return this;
+    }
+
+    public CartEntity setUser(UserEntity user) {
+        this.user = user;
+        return this;
+    }
+
+    public CartEntity setItems(List<ItemEntity> items) {
+        this.items = items;
+        return this;
     }
 }

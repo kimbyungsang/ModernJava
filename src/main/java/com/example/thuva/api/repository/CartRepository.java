@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 import java.util.UUID;
 
-@Repository
 public interface CartRepository extends CrudRepository<CartEntity, UUID> {
 /*    @Query("select c from CartEntity c join c.user u where u.id = :customer_id")
     Optional<CartEntity> findByCustomerId(@Param("customerId") UUID customerId);*/

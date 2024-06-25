@@ -13,7 +13,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "product")
 @Getter
-@Setter
 public class ProductEntity {
 
     @Id
@@ -64,5 +63,45 @@ public class ProductEntity {
     }
 
     public ProductEntity() {
+    }
+
+    public ProductEntity setId(UUID id) {
+        this.id = id;
+        return this;
+    }
+
+    public ProductEntity setName(@NotNull(message = "Product name is required.!") String name) {
+        this.name = name;
+        return this;
+    }
+
+    public ProductEntity setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public ProductEntity setPrice(BigDecimal price) {
+        this.price = price;
+        return this;
+    }
+
+    public ProductEntity setCount(int count) {
+        this.count = count;
+        return this;
+    }
+
+    public ProductEntity setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+        return this;
+    }
+
+    public ProductEntity setTags(List<TagEntity> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    public ProductEntity setItems(List<ItemEntity> items) {
+        this.items = items;
+        return this;
     }
 }

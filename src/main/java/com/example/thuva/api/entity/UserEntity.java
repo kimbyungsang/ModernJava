@@ -28,7 +28,7 @@ public class UserEntity {
     @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "FIRT_NAME")
+    @Column(name = "FIRST_NAME")
     private String firstName;
 
     @Column(name = "LAST_NAME")

@@ -9,13 +9,17 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.UUID;
 
-@Repository
 public interface ItemRepository extends CrudRepository<ItemEntity, UUID> {
-    @Query(value = "select i.* from thuva.cart c, thuva.item i, thuva.\"user\" u, thuva.cart_item ci " +
-            "where u.id = :customerId and " +
-            "c.user_id=u_id and " +
-            "c.id = ci.cart_id and " +
-            "i.id = ci.item_id",
+//    @Query(value = "select i.* from thuva.cart c, thuva.item i, thuva.\"user\" u, thuva.cart_item ci " +
+//            "where u.id = :customerId and " +
+//            "c.user_id=u_id and " +
+//            "c.id = ci.cart_id and " +
+//            "i.id = ci.item_id",
+//            nativeQuery = true)
+
+    @Query(
+            value =
+                    "select i.* from thuva.cart c, thuva.item i, thuva.\"user\" u, thuva.cart_item ci where u.id = :customerId and c.user_id=u.id and c.id=ci.cart_id and i.id=ci.item_id",
             nativeQuery = true)
     Iterable<ItemEntity> findByCustomerId(String customerId);
 

@@ -10,7 +10,7 @@ public interface ItemService {
     ItemEntity toEntity(Item m);
     Item toModel(ItemEntity e);
     List<ItemEntity> toEntityList(List<Item> items);
-    List<Item> toList(List<ItemEntity> items);
+    List<Item> toModelList(List<ItemEntity> items);
 
 
 }
