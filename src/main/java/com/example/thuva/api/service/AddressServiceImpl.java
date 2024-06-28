@@ -3,11 +3,9 @@ package com.example.thuva.api.service;
 import com.example.thuva.api.entity.AddressEntity;
 import com.example.thuva.api.exceptions.ResourceNotFoundException;
 import com.example.thuva.api.model.AddAddressReq;
-import com.example.thuva.api.model.Address;
 import com.example.thuva.api.repository.AddressRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 

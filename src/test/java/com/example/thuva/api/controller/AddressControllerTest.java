@@ -21,7 +21,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.example.thuva.api.AppConfig;
 
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.Matchers.hasSize;
 
 import java.util.Optional;
 import java.util.UUID;

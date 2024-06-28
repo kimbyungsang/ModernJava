@@ -3,7 +3,6 @@ package com.example.thuva.api.service;
 import com.example.thuva.api.entity.AddressEntity;
 import com.example.thuva.api.model.AddAddressReq;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface AddressService {

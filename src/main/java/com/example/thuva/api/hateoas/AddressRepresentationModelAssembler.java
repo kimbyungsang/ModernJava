@@ -2,17 +2,13 @@ package com.example.thuva.api.hateoas;
 
 import com.example.thuva.api.controller.AddressController;
 import com.example.thuva.api.entity.AddressEntity;
-import com.example.thuva.api.model.AddAddressReq;
 import com.example.thuva.api.model.Address;
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
-import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import static java.util.stream.Collectors.toList;

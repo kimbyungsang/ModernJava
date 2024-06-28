@@ -1,10 +1,7 @@
 package com.example.thuva.api.repository;
 
-import com.example.thuva.api.entity.Posts;
-import org.aspectj.lang.annotation.After;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.AfterEach;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
