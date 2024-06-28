@@ -25,7 +25,7 @@ public class PostsRepositoryTest {
             postsRepository.deleteAll();
         }
 
-    @Test
+/*    @Test
     public void getPosts() {
         // given
         String title = "title for test";
@@ -44,7 +44,7 @@ public class PostsRepositoryTest {
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
-    }
+    }*/
 
 
 

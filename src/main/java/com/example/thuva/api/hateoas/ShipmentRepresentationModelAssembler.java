@@ -59,6 +59,7 @@ public class ShipmentRepresentationModelAssembler
    */
   public List<Shipment> toListModel(Iterable<ShipmentEntity> entities) {
     if (Objects.isNull(entities)) return List.of();
-    return StreamSupport.stream(entities.spliterator(), false).map(this::toModel).collect(toList());
+    return StreamSupport.stream(entities.spliterator(), false)
+            .map(this::toModel).collect(toList());
   }
 }

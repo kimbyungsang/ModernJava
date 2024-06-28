@@ -207,7 +207,7 @@ create TABLE IF NOT EXISTS thuva.cart_item (
 );
 
 create TABLE IF NOT EXISTS thuva.post (
-	id uuid NOT NULL DEFAULT random_uuid(),
+	id bigint auto_increment,
 	title varchar(24),
 	content varchar(24),
 	author varchar(16),

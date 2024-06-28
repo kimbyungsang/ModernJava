@@ -10,7 +10,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "address")
 @Getter
-@Setter
 public class AddressEntity {
 
     @Id
@@ -38,4 +37,44 @@ public class AddressEntity {
 
     @OneToMany(mappedBy = "addressEntity", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<OrderEntity> orders;
+
+    public AddressEntity setId(UUID id) {
+        this.id = id;
+        return this;
+    }
+
+    public AddressEntity setNumber(String number) {
+        this.number = number;
+        return this;
+    }
+
+    public AddressEntity setStreet(String street) {
+        this.street = street;
+        return this;
+    }
+
+    public AddressEntity setCity(String city) {
+        this.city = city;
+        return this;
+    }
+
+    public AddressEntity setState(String state) {
+        this.state = state;
+        return this;
+    }
+
+    public AddressEntity setCountry(String country) {
+        this.country = country;
+        return this;
+    }
+
+    public AddressEntity setPincode(String pincode) {
+        this.pincode = pincode;
+        return this;
+    }
+
+    public AddressEntity setOrders(List<OrderEntity> orders) {
+        this.orders = orders;
+        return this;
+    }
 }
