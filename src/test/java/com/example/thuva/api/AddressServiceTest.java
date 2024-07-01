@@ -17,6 +17,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import com.example.thuva.api.service.AddressServiceImpl;
 import com.example.thuva.api.repository.AddressRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -150,6 +151,19 @@ public class AddressServiceTest {
         verify(repository, times(1)).findById(UUID.fromString(nonExistId));
         verify(repository, times(0)).deleteById(UUID.fromString(nonExistId));
 
+    }
+
+    @Test
+    @DisplayName("return all addresses")
+    public void getAllAddress() {
+        given(repository.findAll()).willReturn(List.of(entity));
+
+        //when
+        Iterable<AddressEntity> result = service.getAllAddresses();
+        //then
+        assertThat(result).isNotNull();
+        assertThat(result).contains(entity);
+        assertThat(result).contains(entity);
     }
 
 }

@@ -3,7 +3,9 @@ plugins {
 	id 'org.springframework.boot' version '3.3.0'
 	id 'io.spring.dependency-management' version '1.1.5'
 	id 'org.hidetake.swagger.generator' version '2.19.2'
+	id 'jacoco'
 }
+
 
 group = 'com.example.thuva'
 version = '0.0.1-SNAPSHOT'
@@ -42,11 +44,73 @@ compileJava.dependsOn swaggerSources.eStore.code
 sourceSets.main.java.srcDir "${swaggerSources.eStore.code.outputDir}/src/main/java"
 sourceSets.main.resources.srcDir "${swaggerSources.eStore.code.outputDir}/src/main/resources"
 
+jacoco {
+	toolVersion = "0.8.8"
+	reportsDirectory = layout.buildDirectory.dir("$buildDir/jacoco")
+}
+
+jacocoTestReport {
+	dependsOn test // tests are required to run before generating the report
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(
+					dir: it,
+					exclude: [
+							'com/example/thuva/api/model/*',
+							'com/example/thuva/api/*Api.*',
+							'com/example/thuva/api/security/UNUSED/*',
+					])
+		}))
+	}
+}
+
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			limit {
+				minimum = 0.9
+			}
+		}
+	}
+}
+
 
 repositories {
 	mavenCentral()
 	maven { url 'https://repo.spring.io/milestone' }
 }
+
+//sourceSets {    integrationTest {
+//	java {
+//		compileClasspath += main.output + test.output
+//		runtimeClasspath += main.output + test.output
+//		srcDir file('src/integration/java')
+//	}
+//	resources.srcDir file('src/integration/resources')
+//}
+//}
+
+sourceSets {
+	integrationTest {
+		java {
+			compileClasspath += main.output + test.output
+			runtimeClasspath += main.output + test.output
+			srcDir file('src/integration/resources')
+		}
+		resources.srcDir file('src/integration/resources')
+	}
+}
+
+tasks.register('integrationTest', Test) {
+	useJUnitPlatform()
+	description = 'Runs the integration tests.'
+	group = 'verification'
+	testClassesDirs = sourceSets.integrationTest.output.classesDirs
+	classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+check.dependsOn integrationTest
+integrationTest.mustRunAfter test
 
 dependencies {
 	// OpenAPI Starts
@@ -71,6 +135,12 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	// DB Ends
 
+
+	// Security Starts
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	implementation 'com.auth0:java-jwt:4.3.0'
+	// Security Ends
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -78,4 +148,5 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	finalizedBy(jacocoTestReport)
 }

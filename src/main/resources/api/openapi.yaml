@@ -37,6 +37,98 @@ tags:
 
 
 paths:
+  /api/v1/users:
+    post:
+      tags:
+        - user
+      summary: Signup a new customer (user)
+      description: Create a new customer (user)
+      operationId: signUp
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        201:
+          description: For successful user creation.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SignedInUser'
+            application/json:
+              schema:
+                $ref: '#components/schemas/SignedInUser'
+  /api/v1/auth/token:
+    post:
+      tags:
+        - user
+      summary: Signin the customer (user)
+      description: Generates the JWT and refresh token
+      operationId: signIn
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SignInReq'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInReq'
+      responses:
+        200:
+          description: Returns the access and refresh token.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SignedInUser'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedInUser'
+    delete:
+      tags:
+        - user
+      summary: Signouts the customer (user)
+      description: Signouts the customer (user)
+      operationId: signOut
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RefreshToken'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshToken'
+      responses:
+        202:
+          description: Accepts the request for logout.
+  /api/v1/auth/token/refresh:
+    post:
+      tags:
+        - user
+      summary: Provides new JWT based on valid refresh token.
+      description: Provides JWT based on valid refresh token.
+      operationId: getAccessToken
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RefreshToken'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshToken'
+      responses:
+        200:
+          description: For successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SignedInUser'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedInUser'
   /api/v1/carts/{customerId}:
     get:
       tags:
@@ -794,6 +886,39 @@ paths:
                 $ref: '#/components/schemas/Product'
 components:
   schemas:
+    SignedInUser:
+      description: Signed-in user information
+      type: object
+      properties:
+        refreshToken:
+          description: Refresh Token
+          type: string
+        accessToken:
+          description: JWT token aka access token
+          type: string
+        username:
+          description: User Name
+          type: string
+        userId:
+          description: User Identifier
+          type: string
+    SignInReq:
+      description: Request body for Sign-in
+      type: object
+      properties:
+        username:
+          description: username of the User
+          type: string
+        password:
+          description: password of the User
+          type: string
+    RefreshToken:
+      description: Containes the refresh toekn
+      type: object
+      properties:
+        refreshToken:
+          description: Refresh Token
+          type: string
     Cart:
       description: Shopping Cart of the user
       type: object
